@@ -20,6 +20,6 @@ jobs:
 #        git pull --rebase origin master
 #        git push origin testing
       uses: devvspaces/merge-branches@v1
-        with:
-          from_branch: master
-          to_branch: testing
+      with:
+        from_branch: master
+        to_branch: testing
