@@ -14,8 +14,12 @@ jobs:
       uses: actions/checkout@v3
  
     - name: Merge changes
-      run: |
-        git fetch
-        git checkout testing
-        git pull --rebase origin master
-        git push origin testing
+#      run: |
+#        git fetch
+#        git checkout testing
+#        git pull --rebase origin master
+#        git push origin testing
+      uses: devvspaces/merge-branches@v1
+        with:
+          from_branch: master
+          to_branch: production
