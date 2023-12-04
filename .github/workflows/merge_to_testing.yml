@@ -16,7 +16,7 @@ jobs:
     - name: Merge changes
       run: |
         git fetch
-        git checkout origin testing
+        git checkout --track origin/testing
         git pull --rebase origin master
         git push origin testing
     
