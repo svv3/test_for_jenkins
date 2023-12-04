@@ -16,9 +16,14 @@ jobs:
     - name: Merge changes
       run: |
         git fetch
+        echo "git fetch"
         git checkout --track origin/testing
+        echo "git checkout"
         git add 123.txt
+        echo "git add"
         git pull --rebase origin master
+        echo "git pull"
         git rebase --continue
+        echo "git rebase"
         git push origin testing
     
