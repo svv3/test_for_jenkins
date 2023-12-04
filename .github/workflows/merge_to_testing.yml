@@ -19,4 +19,3 @@ jobs:
         git checkout testing
         git pull --rebase origin master
         git push origin testing
-        
