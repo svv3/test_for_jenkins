@@ -21,7 +21,7 @@ jobs:
         echo "git checkout"
         git add 123.txt
         echo "git add"
-        git config pull.rebase false
+        git config pull.rebase true
         echo "git config"
         git pull origin master
         echo "git pull"
