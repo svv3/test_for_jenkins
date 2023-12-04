@@ -17,7 +17,7 @@ jobs:
       run: |
         git fetch
         git checkout --track origin/testing
-        git status
+        git add 123.txt
         git pull --rebase origin master
         git rebase --continue
         git push origin testing
