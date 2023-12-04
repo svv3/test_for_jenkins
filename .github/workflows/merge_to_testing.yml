@@ -22,4 +22,4 @@ jobs:
       uses: devvspaces/merge-branches@v1
         with:
           from_branch: master
-          to_branch: production
+          to_branch: testing
