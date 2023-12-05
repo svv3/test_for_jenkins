@@ -25,12 +25,12 @@ jobs:
         echo '[========== Run "git push origin testing" ==================]'
         git push origin testing
         echo '[========== Run "git status" ===============================]'
-        git status
+        git statusee
 
     - name: Send notification
       uses: neonidian/teams-notify-build-status@v3
       with:
-        webhookUrl: |                                         # Send to multiple channels in MS Teams
+        webhookUrl: |
           ${{ secrets.TEAMS_HOOK }}
         title: LANDING_MODULE
         titleBackgroundColor: ${{ steps.merge_changes.outcome }}    # Specify title background color. 'unitTest' is the ID of a step
