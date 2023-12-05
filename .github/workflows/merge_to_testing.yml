@@ -15,6 +15,7 @@ jobs:
  
     - name: Merge changes
       run: |
+        ls -la
         git fetch
         echo "git fetch"
         git checkout --track origin/testing
