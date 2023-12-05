@@ -1,4 +1,4 @@
-name: Merge-from-master-to-testing
+name: Merge-from-master-into-testing
  
 on:
   push:
@@ -14,6 +14,18 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: 'testing'
+
+    - name: Send notification [Always]
+      uses: neonidian/teams-notify-build-status@v3
+      if: always()
+      with:
+        webhookUrl: ${{ secrets.TEAMS_HOOK }}
+        title: LANDING_MODULE
+#        titleBackgroundColor: ${{ steps.merge_changes.outcome }}
+        message: Merge from master into testing has been run
+        titleBackgroundColor: ${{ job.status }}
+      env:
+        SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
  
     - name: Merge changes
       id: merge_changes
@@ -25,19 +37,7 @@ jobs:
         echo '[========== Run "git push origin testing" ==================]'
         git push origin testing
         echo '[========== Run "git status" ===============================]'
-        git statusee
-
-    - name: Send notification [Always]
-      uses: neonidian/teams-notify-build-status@v3
-      if: always()
-      with:
-        webhookUrl: ${{ secrets.TEAMS_HOOK }}
-        title: LANDING_MODULE
-#        titleBackgroundColor: ${{ steps.merge_changes.outcome }}
-        message: Merge from master to testing has been run
-        titleBackgroundColor: ${{ job.status }}
-      env:
-        SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
+        git status
 
     - name: Send notification [Failed]
       uses: neonidian/teams-notify-build-status@v3
