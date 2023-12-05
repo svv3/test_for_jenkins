@@ -27,8 +27,7 @@ jobs:
         git status
 
     - name: Send a Notification
-      id: notify
-      uses: thechetantalwar/teams-notify@v2
+      uses: neonidian/teams-notify-build-status@v3
       with:
-        teams_webhook_url: ${{ secrets.TEAMS_HOOK }}
-        message: "TEST TEST TEST TEST Github Action Build Number ${{ github.run_number }} Completed for ${{ github.repository }} and the outcome is  ${{ needs.build.result }}. TEST"
+        webhookUrl: ${{ secrets.TEAMS_HOOK }}
+        message: TEST !!
