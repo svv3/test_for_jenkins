@@ -11,16 +11,11 @@ jobs:
  
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
+      with:
+        ref: 'testing'
  
     - name: Merge changes
       run: |
         ls -la
-        git fetch
-        git checkout testing
-        echo "checkout"
-        git config pull.rebase false
-        echo "pull.rebase"
-        git pull origin master --allow-unrelated-histories
-        echo "pull 2"
-        git push origin testing
+        git status
