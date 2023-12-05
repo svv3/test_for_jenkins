@@ -22,3 +22,6 @@ jobs:
         git pull --rebase origin master
         echo "pulll"
         git status
+        git push origin testing
+        echo "pushhhh"
+        git status
