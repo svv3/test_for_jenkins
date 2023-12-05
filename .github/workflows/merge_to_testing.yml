@@ -25,3 +25,10 @@ jobs:
         git push origin testing
         echo '[========== Run "git status" ===============================]'
         git status
+
+    - name: Send a Notification
+      id: notify
+      uses: thechetantalwar/teams-notify@v2
+      with:
+        teams_webhook_url: ${{ secrets.TEAMS_HOOK }}
+        message: "TEST TEST TEST TEST Github Action Build Number ${{ github.run_number }} Completed for ${{ github.repository }} and the outcome is  ${{ needs.build.result }}. TEST"
