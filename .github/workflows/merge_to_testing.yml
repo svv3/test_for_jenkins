@@ -36,7 +36,7 @@ jobs:
         echo '[========== Run "git push origin testing" ==================]'
         git push origin testing
         echo '[========== Run "git status" ===============================]'
-        git status1
+        git status
 
     - name: Send notification [Failed]
       uses: neonidian/teams-notify-build-status@v3
