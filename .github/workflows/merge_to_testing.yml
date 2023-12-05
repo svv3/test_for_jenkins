@@ -19,7 +19,7 @@ jobs:
         git fetch
         echo "git fetch"
         git checkout --track origin/testing
-        git pull origin master
+        git pull --rebase origin master
         echo "git pull"
         git push origin testing
     
