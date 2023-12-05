@@ -15,7 +15,8 @@ jobs:
       with:
         ref: 'testing'
  
-    - name: mergeChanges
+    - name: Merge changes
+      id: merge_changes
       run: |
         echo '[========== Run "git status" ===============================]'
         git status
@@ -26,16 +27,16 @@ jobs:
         echo '[========== Run "git status" ===============================]'
         git status
 
-    - name: sendNotification
+    - name: Send notification
       uses: neonidian/teams-notify-build-status@v3
       with:
         webhookUrl: |                                         # Send to multiple channels in MS Teams
           ${{ secrets.TEAMS_HOOK }}
         title: LANDING_MODULE
-        titleBackgroundColor: ${{ steps.mergeChanges.outcome }}    # Specify title background color. 'unitTest' is the ID of a step
-        status: ${{ steps.mergeChanges.outcome }}                  # Specify what should be displayed in the status label
+        titleBackgroundColor: ${{ steps.merge_changes.outcome }}    # Specify title background color. 'unitTest' is the ID of a step
+        status: ${{ steps.merge_changes.outcome }}                  # Specify what should be displayed in the status label
         message: >-
-          TEST ${{ steps.mergeChanges.outcome }}       
+          TEST ${{ steps.merge_changes.outcome }}       
       env:
         SHOULD_DISPLAY_ACTOR_LABEL: true
         SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
