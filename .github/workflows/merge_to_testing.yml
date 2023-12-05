@@ -19,8 +19,8 @@ jobs:
         git fetch
         git checkout testing
         echo "checkout"
-        git config pull.ff only
+        git config pull.rebase false
         echo "pull.rebase"
-        git pull origin master
+        git pull origin master --allow-unrelated-histories
         echo "pull 2"
         git push origin testing
