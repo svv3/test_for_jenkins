@@ -27,6 +27,18 @@ jobs:
         echo '[========== Run "git status" ===============================]'
         git statusee
 
+    - name: Send notification [Always]
+      uses: neonidian/teams-notify-build-status@v3
+      if: always()
+      with:
+        webhookUrl: ${{ secrets.TEAMS_HOOK }}
+        title: LANDING_MODULE
+#        titleBackgroundColor: ${{ steps.merge_changes.outcome }}
+        message: Merge from master to testing has been run
+        titleBackgroundColor: ${{ job.status }}
+      env:
+        SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
+
     - name: Send notification [Failed]
       uses: neonidian/teams-notify-build-status@v3
       if: ${{ !success() }}                                                          
@@ -52,16 +64,4 @@ jobs:
       env:
         SHOULD_DISPLAY_ACTOR_LABEL: true
         SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
-        SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
-
-    - name: Send notification [Always]
-      uses: neonidian/teams-notify-build-status@v3
-      if: always()
-      with:
-        webhookUrl: ${{ secrets.TEAMS_HOOK }}
-        title: LANDING_MODULE
-        titleBackgroundColor: ${{ steps.merge_changes.outcome }}
-        message: Merge from master to testing has been run
-#        titleBackgroundColor: ${{ job.status }}
-      env:
         SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
