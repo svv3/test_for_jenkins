@@ -21,9 +21,9 @@ jobs:
       with:
         webhookUrl: ${{ secrets.TEAMS_HOOK }}
         title: LANDING_MODULE
-#        titleBackgroundColor: ${{ steps.merge_changes.outcome }}
+        titleBackgroundColor: ${{ steps.merge_changes.outcome }}
         message: Merge from master into testing has been run
-        titleBackgroundColor: ${{ job.status }}
+#        titleBackgroundColor: ${{ job.status }}
       env:
         SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
  
@@ -60,7 +60,7 @@ jobs:
         titleBackgroundColor: ${{ steps.merge_changes.outcome }}                     
         status: ${{ steps.merge_changes.outcome }}                                   
         message: >-
-          TEST ${{ steps.merge_changes.outcome }}       
+          Success merge into testing.       
       env:
         SHOULD_DISPLAY_ACTOR_LABEL: true
         SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
