@@ -17,9 +17,11 @@ jobs:
  
     - name: Merge changes
       run: |
-        echo 'Run "git pull --rebase origin master"'
+        echo '[========== Run "git status" ===============================]'
+        git status
+        echo '[========== Run "git pull --rebase origin master" ==========]'
         git pull --rebase origin master
-        echo 'Run "git push origin testing"'
+        echo '[========== Run "git push origin testing" ==================]'
         git push origin testing
-        echo 'Run "git status"'
+        echo '[========== Run "git status" ===============================]'
         git status
