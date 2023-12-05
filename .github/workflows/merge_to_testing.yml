@@ -19,7 +19,7 @@ jobs:
         git fetch
         git checkout testing
         echo "checkout"
-        git config pull.rebase false
+        git pull --ff-only
         echo "pull.rebase"
         git pull origin master
         echo "pull 2"
