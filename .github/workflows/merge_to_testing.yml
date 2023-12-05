@@ -29,5 +29,14 @@ jobs:
     - name: Send a Notification
       uses: neonidian/teams-notify-build-status@v3
       with:
-        webhookUrl: ${{ secrets.TEAMS_HOOK }}
-        message: TEST !!
+        webhookUrl: |                                         # Send to multiple channels in MS Teams
+          ${{ secrets.TEAMS_HOOK }}
+        title: Unit Tests                                      # Specify a title header
+        titleBackgroundColor: ${{ steps.unitTest.outcome }}    # Specify title background color. 'unitTest' is the ID of a step
+        status: ${{ steps.unitTest.outcome }}                  # Specify what should be displayed in the status label
+        message: >-
+          TEST ${{ steps.versioning.outputs.semver }}       # 'versioning' is the ID of the steps that creates versioning
+      env:                                                     # Enable actor labels and buttons using environment variables
+        SHOULD_DISPLAY_ACTOR_LABEL: true
+        SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
+        SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
