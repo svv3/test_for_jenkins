@@ -18,5 +18,11 @@ jobs:
         ls -la
         git fetch
         git checkout testing
+        echo "checkout"
         git pull origin master
-        git push origin testing   
+        echo "pull 1"
+        git config pull.rebase false
+        echo "pull.rebase"
+        git pull origin master
+        echo "pull 2"
+        git push origin testing
