@@ -16,10 +16,6 @@ jobs:
     - name: Merge changes
       run: |
         ls -la
-        git fetch
-        echo "git fetch"
-        git checkout --track origin/testing
-        git pull --rebase origin master
-        echo "git pull"
-        git push origin testing
-    
+        git checkout testing
+        git pull origin master
+        git push origin testing   
