@@ -54,7 +54,7 @@ jobs:
         title: >-
           [Repository link](${{ github.server_url }}+$GET_PR_LINK)
 #        title: LANDING_MODULE
-        GET_PR_LINK: ${{ steps.сreate_pull_request.outcome }}
+        get_pr_link: ${{ steps.сreate_pull_request.outcome }}
         titleBackgroundColor: ${{ steps.merge_changes.outcome }}
         message: >-
           Failed merge into testing. Please click the button for more details =>
