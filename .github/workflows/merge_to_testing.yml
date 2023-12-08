@@ -39,7 +39,7 @@ jobs:
         git status
 
     - name: Create pull request
-      id: сreate_pull_request
+      id: pull_request
       if: ${{ !success() }}
       run: |
         gh pr create -B testing -H master --title 'Merge "master" into "testing"' --body 'Created by Github Action' --reviewer 1ndreypetrenk0
