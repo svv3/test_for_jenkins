@@ -41,8 +41,8 @@ jobs:
     - name: Create pull request
       if: ${{ !success() }}
       run: |
-        gh pr create -B testing -H master --title 'Merge "master" into "testing"' --body 'Created by Github Action' --reviewer 1ndreypetrenk0
-        echo '${{ github.REF }}'
+        gh pr create -B testing -H master --title 'Merge "master" into "testing"' --body 'Created by Github Action' --reviewer 1ndreypetrenk0 >> "$GITHUB_ENV"
+        echo '${{ GITHUB_ENV }}'
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
