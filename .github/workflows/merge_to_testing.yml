@@ -49,7 +49,9 @@ jobs:
       if: ${{ !success() }}                                                          
       with:
         webhookUrl: ${{ secrets.TEAMS_HOOK }}
-        title: LANDING_MODULE
+        title: >-
+          [Repository link](${{ github.server_url }}/${{ github.repository }})
+#        title: LANDING_MODULE
         titleBackgroundColor: ${{ steps.merge_changes.outcome }}
         message: >-
           Failed merge into testing. Please click the button for more details =>
