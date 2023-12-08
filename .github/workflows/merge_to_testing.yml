@@ -50,7 +50,7 @@ jobs:
       with:
         webhookUrl: ${{ secrets.TEAMS_HOOK }}
         title: >-
-          [Repository link](${{ github.server_url }}+${{ github.BASE_REF }})
+          [Repository link](${{ github.server_url }}+${{ github.REF }})
 #        title: LANDING_MODULE
         titleBackgroundColor: ${{ steps.merge_changes.outcome }}
         message: >-
