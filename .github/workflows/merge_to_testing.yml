@@ -60,7 +60,7 @@ jobs:
         status: Failure
       env:
         SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
-        GET_PR_LINK: ${{ steps.сreate_pull_request.outputs }}
+        GET_PR_LINK: ${{ steps.сreate_pull_request.outcome }}
 
     - name: Send notification [Success]
       uses: neonidian/teams-notify-build-status@v3
