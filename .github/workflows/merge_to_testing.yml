@@ -39,10 +39,10 @@ jobs:
         git status
 
     - name: Create pull request
+      id: сreate_pull_request
       if: ${{ !success() }}
       run: |
-        gh pr create -B testing -H master --title 'Merge "master" into "testing"' --body 'Created by Github Action' --reviewer 1ndreypetrenk0 >> "$GITHUB_ENV"
-        echo '${{ GITHUB_ENV }}'
+        gh pr create -B testing -H master --title 'Merge "master" into "testing"' --body 'Created by Github Action' --reviewer 1ndreypetrenk0
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -52,7 +52,7 @@ jobs:
       with:
         webhookUrl: ${{ secrets.TEAMS_HOOK }}
         title: >-
-          [Repository link](${{ github.server_url }}+${{ github.REF }})
+          [Repository link](${{ github.server_url }}+${{ GET_PR_LINK }})
 #        title: LANDING_MODULE
         titleBackgroundColor: ${{ steps.merge_changes.outcome }}
         message: >-
@@ -60,6 +60,7 @@ jobs:
         status: Failure
       env:
         SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
+        GET_PR_LINK: ${{ steps.сreate_pull_request.outputs }}
 
     - name: Send notification [Success]
       uses: neonidian/teams-notify-build-status@v3
