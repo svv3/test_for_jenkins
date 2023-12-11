@@ -48,7 +48,7 @@ jobs:
 
     - name: Test link
       run: |
-        echo 'gh run view pull_request'
+        gh run view pull_request
 
  #   - name: Send notification [Failed]
  #     uses: neonidian/teams-notify-build-status@v3
