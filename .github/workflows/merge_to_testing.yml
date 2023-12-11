@@ -48,6 +48,8 @@ jobs:
 
     - name: Test link
       run: |
+        ls -la
+        pwd
         gh run view pull_request
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
