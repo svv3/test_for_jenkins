@@ -56,7 +56,8 @@ jobs:
         titleBackgroundColor: ${{ steps.merge_changes.outcome }}
         message: >
           "[LANDING_MODULE]"
-          
+
+          <br>
           "Failed merge into testing. Please click the button for more details =>"
         status: Failure
       env:
