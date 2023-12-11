@@ -52,7 +52,7 @@ jobs:
         echo 'Test link'
         ls -la
         pwd
-        gh run view pull_request
+        gh run view --job pull_request
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
