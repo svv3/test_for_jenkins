@@ -47,6 +47,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Test link
+      id: test_link
       run: |
         echo 'Test link'
         ls -la
