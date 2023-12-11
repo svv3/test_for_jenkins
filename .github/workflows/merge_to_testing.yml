@@ -42,7 +42,7 @@ jobs:
       id: pull_request
       if: ${{ !success() }}
       run: |
-        echo "pull_request_result=$(gh pr create --fill-first -B testing -H master --body 'Created by Github Action' --reviewer 1ndreypetrenk0)" >> $GITHUB_OUTPUT
+        echo "pull_request_result=$(gh pr create -B testing -H master --title 'Merge "master" into "testing". Workflows ${{ github.run_id }}' --body 'Created by Github Action' --reviewer 1ndreypetrenk0)" >> $GITHUB_OUTPUT
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
