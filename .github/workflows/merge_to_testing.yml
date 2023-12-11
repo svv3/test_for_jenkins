@@ -42,7 +42,7 @@ jobs:
       id: pull_request
       if: ${{ !success() }}
       run: |
-        echo "pull_request_result=$(gh pr create -B testing -H master --title 'Merge master into testing' --body 'Created by Github Action' --reviewer 1ndreypetrenk0)" >> $GITHUB_OUTPUT
+        echo "pull_request_result=$(gh pr create -B testing -H master --title 'Merge "master" into "testing"' --body 'Created by Github Action' --reviewer 1ndreypetrenk0)" >> $GITHUB_OUTPUT
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -61,7 +61,7 @@ jobs:
       uses: neonidian/teams-notify-build-status@v3
       if: ${{ !success() }}                                                          
       with:
-        webhookUrl: ${{ secrets.TEAMS_HOOK1 }}
+        webhookUrl: ${{ secrets.TEAMS_HOOK }}
         title: >-
           Pull request link [Repository link](${{ steps.pull_request.outputs.pull_request_result }})
         titleBackgroundColor: ${{ steps.merge_changes.outcome }}
