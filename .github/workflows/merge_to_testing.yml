@@ -49,6 +49,8 @@ jobs:
     - name: Test link
       run: |
         gh run view pull_request
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
  #   - name: Send notification [Failed]
  #     uses: neonidian/teams-notify-build-status@v3
