@@ -55,7 +55,7 @@ jobs:
           [Pull request link](${{ steps.pull_request.outputs.pull_request_result }})
         titleBackgroundColor: ${{ steps.merge_changes.outcome }}
         message: |
-          [LANDING_MODULE]
+          [LANDING_MODULE]\n
           Failed merge into testing. Please click the button for more details =>
         status: Failure
       env:
