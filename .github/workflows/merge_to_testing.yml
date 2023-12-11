@@ -26,7 +26,25 @@ jobs:
  #     env:
  #       SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
  
-    
+ #   - name: Merge changes
+ #     id: merge_changes
+ #     run: |
+ #       echo '[========== Run "git status" ===============================]'
+ #       git status
+ #       echo '[========== Run "git pull origin master" ==========]'
+ #       git pull origin master
+ #       echo '[========== Run "git push origin testing" ==================]'
+ #       git push11 origin testing
+ #       echo '[========== Run "git status" ===============================]'
+ #       git status
+
+    - name: Create pull request
+      id: pull_request
+ #     if: ${{ !success() }}
+      run: |
+        gh pr create -B testing -H master --title 'Merge "master" into "testing"' --body 'Created by Github Action' --reviewer 1ndreypetrenk0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Test link
       id: test_link
