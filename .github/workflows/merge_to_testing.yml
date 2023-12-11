@@ -52,7 +52,7 @@ jobs:
         echo 'Test link'
         ls -la
         pwd
-        echo '$PR_RESULTS'
+        echo "$PR_RESULTS"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PR_RESULTS: ${{ steps.pull_request.outputs.pull_request_result }}
