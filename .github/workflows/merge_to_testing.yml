@@ -15,16 +15,16 @@ jobs:
       with:
         ref: 'testing'
 
-    - name: Send notification [Always]
-      uses: neonidian/teams-notify-build-status@v3
-      if: always()
-      with:
-        webhookUrl: ${{ secrets.TEAMS_HOOK1 }}
-        title: LANDING_MODULE
-        message: Merge from master into testing has been run
+ #   - name: Send notification [Always]
+ #     uses: neonidian/teams-notify-build-status@v3
+ #     if: always()
+ #     with:
+ #       webhookUrl: ${{ secrets.TEAMS_HOOK1 }}
+ #       title: LANDING_MODULE
+ #       message: Merge from master into testing has been run
 #        titleBackgroundColor: ${{ job.status }}
-      env:
-        SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
+ #     env:
+ #       SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
  
     - name: Merge changes
       id: merge_changes
@@ -44,25 +44,26 @@ jobs:
       run: |
         gh pr create -B testing -H master --title 'Merge "master" into "testing"' --body 'Created by Github Action' --reviewer 1ndreypetrenk0
       env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Test link
-      run: echo 'gh run view pull_request'
+      run: |
+        echo 'gh run view pull_request'
 
-    - name: Send notification [Failed]
-      uses: neonidian/teams-notify-build-status@v3
-      if: ${{ !success() }}                                                          
-      with:
-        webhookUrl: ${{ secrets.TEAMS_HOOK1 }}
-        title: >-
-          [Repository link](${{ steps.pull_request.outputs }})
+ #   - name: Send notification [Failed]
+ #     uses: neonidian/teams-notify-build-status@v3
+ #     if: ${{ !success() }}                                                          
+ #    with:
+ #       webhookUrl: ${{ secrets.TEAMS_HOOK1 }}
+ #       title: >-
+ #         [Repository link](${{ steps.pull_request.outputs }})
 #        title: LANDING_MODULE
-        titleBackgroundColor: ${{ steps.merge_changes.outcome }}
-        message: >-
-          Failed merge into testing. Please click the button for more details =>
-        status: Failure
-      env:
-        SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
+ #       titleBackgroundColor: ${{ steps.merge_changes.outcome }}
+ #       message: >-
+ #        Failed merge into testing. Please click the button for more details =>
+ #       status: Failure
+ #     env:
+ #       SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
 
     - name: Send notification [Success]
       uses: neonidian/teams-notify-build-status@v3
