@@ -19,7 +19,7 @@ jobs:
       uses: neonidian/teams-notify-build-status@v3
       if: always()
       with:
-        webhookUrl: ${{ secrets.TEAMS_HOOK }}
+        webhookUrl: ${{ secrets.TEAMS_HOOK1 }}
         title: LANDING_MODULE
         message: Merge from master into testing has been run
 #        titleBackgroundColor: ${{ job.status }}
@@ -46,11 +46,14 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Test link
+      run: echo 'gh run view pull_request'
+
     - name: Send notification [Failed]
       uses: neonidian/teams-notify-build-status@v3
       if: ${{ !success() }}                                                          
       with:
-        webhookUrl: ${{ secrets.TEAMS_HOOK }}
+        webhookUrl: ${{ secrets.TEAMS_HOOK1 }}
         title: >-
           [Repository link](${{ steps.pull_request.outputs }})
 #        title: LANDING_MODULE
@@ -64,7 +67,7 @@ jobs:
     - name: Send notification [Success]
       uses: neonidian/teams-notify-build-status@v3
       with:
-        webhookUrl: ${{ secrets.TEAMS_HOOK }}
+        webhookUrl: ${{ secrets.TEAMS_HOOK1 }}
         title: LANDING_MODULE
         titleBackgroundColor: ${{ steps.merge_changes.outcome }}                     
         status: ${{ steps.merge_changes.outcome }}                                   
