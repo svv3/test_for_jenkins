@@ -13,6 +13,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
+        fetch-depth: 0
         ref: 'testing'
 
     - name: Send notification [Always]
@@ -22,7 +23,6 @@ jobs:
         webhookUrl: ${{ secrets.TEAMS_HOOK }}
         title: LANDING_MODULE
         message: Merge from "master" into "testing" has been run. Workflow №${{ github.run_number }}
-#        titleBackgroundColor: ${{ job.status }}
       env:
         SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
  
@@ -31,8 +31,15 @@ jobs:
       run: |
         echo "[========== Run 'git status' ===============================]"
         git status
+        echo "[========== Run 'git config user' ==========================]"
+        git config user.name "github_actions"
+        git config user.email "github_actions@github-actions"
+        echo "[========== Run 'git config pull.rebase false' =============]"
+        git config pull.rebase false
         echo "[========== Run 'git pull origin master' ===================]"
-        git pull origin master
+        git pull origin master --allow-unrelated-histories --no-edit
+        echo "[========== Run 'git status' ===============================]"
+        git status
         echo "[========== Run 'git push origin testing' ==================]"
         git push origin testing
         echo "[========== Run 'git status' ===============================]"
@@ -42,7 +49,7 @@ jobs:
       id: pull_request
       if: ${{ !success() }}
       run: |
-        echo "pull_request_result=$(gh pr create -B testing -H master --title 'Merge "master" into "testing". Workflow №${{ github.run_number }}' --body 'Created by Github Action' --reviewer 1ndreypetrenk0)" >> $GITHUB_OUTPUT
+        echo "pull_request_result=$(gh pr create -B testing -H master --title 'Merge "master" into "testing". Workflow №${{ github.run_number }}' --body 'Created by Github Action' --reviewer musienko-infuseua)" >> $GITHUB_OUTPUT
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -73,4 +80,3 @@ jobs:
         SHOULD_DISPLAY_ACTOR_LABEL: true
         SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
         SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
-
